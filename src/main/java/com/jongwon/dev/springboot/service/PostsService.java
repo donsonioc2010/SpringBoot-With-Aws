@@ -2,9 +2,12 @@ package com.jongwon.dev.springboot.service;
 
 import com.jongwon.dev.springboot.domain.posts.Posts;
 import com.jongwon.dev.springboot.domain.posts.PostsRepository;
+import com.jongwon.dev.springboot.web.dto.PostsListResponseDto;
 import com.jongwon.dev.springboot.web.dto.PostsResponseDto;
 import com.jongwon.dev.springboot.web.dto.PostsSaveRequestDto;
 import com.jongwon.dev.springboot.web.dto.PostsUpdateRequestDto;
+import java.util.List;
+import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -39,5 +42,12 @@ public class PostsService {
         );
 
     return new PostsResponseDto(entity);
+  }
+
+  @Transactional(readOnly = true)
+  public List<PostsListResponseDto> findAllDesc() {
+    return postsRepository.findAll().stream()
+        .map(PostsListResponseDto::new)
+        .collect(Collectors.toList());
   }
 }

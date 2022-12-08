@@ -1,5 +1,6 @@
 package com.jongwon.dev.springboot.web;
 
+import com.jongwon.dev.springboot.config.auth.LoginUser;
 import com.jongwon.dev.springboot.config.auth.dto.SessionUser;
 import com.jongwon.dev.springboot.service.PostsService;
 import com.jongwon.dev.springboot.web.dto.PostsResponseDto;
@@ -19,15 +20,13 @@ public class IndexController {
   private final HttpSession httpSession;
 
   @GetMapping("/")
-  public String index(Model model) {
+  public String index(Model model, @LoginUser SessionUser user) {
     model.addAttribute("posts", postsService.findAllDesc());
-
-    SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
     if (user != null) {
       model.addAttribute("userName", user.getName());
     }
-    /*
+    /*ㅠ
     Mustache Starter 때문에 .mustache는 생략이 된다.
     앞의 경로는 src/main/resources/templates/가 생략된 상태
      */

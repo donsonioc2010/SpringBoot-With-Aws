@@ -28,7 +28,8 @@ deploy:
     skip_cleanup: true
     acl: private
     local_dir: deploy
-    wait_until-deployd: true
+    wait_until-deployed: true
+
 
 #CI 실행 완료시 매일로 알람
 notifications:

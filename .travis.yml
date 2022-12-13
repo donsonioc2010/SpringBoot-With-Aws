@@ -15,9 +15,9 @@ cache:
 script: "./gradlew clean build"
 
 before_deploy:
-  - zip -r SpringBoot-With-Aws
+  - zip -r demo
   - mkdir -p deploy
-  - mv SpringBoot-With-Aws.zip deploy/SpringBoot-With-Aws.zip
+  - mv demo.zip deploy/demo.zip
 
 deploy:
   - provider: s3

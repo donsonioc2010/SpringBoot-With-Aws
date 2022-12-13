@@ -29,7 +29,8 @@ deploy:
     acl: private
     local_dir: deploy
     wait_until-deployed: true
-
+    on:
+      all_branches: true
 
 #CI 실행 완료시 매일로 알람
 notifications:

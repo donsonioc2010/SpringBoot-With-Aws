@@ -14,6 +14,22 @@ cache:
 
 script: "./gradlew clean build"
 
+before_deploy:
+  - zip -r jong1-springboot-webservice
+  - mkdir -p deploy
+  - mv jong1-springboot-webservice.zip deploy/jong1-springboot-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jong1-springboot-build
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private
+    local_dir: deploy
+    wait_until-deployd: true
+
 #CI 실행 완료시 매일로 알람
 notifications:
   email:

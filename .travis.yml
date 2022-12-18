@@ -35,8 +35,8 @@ deploy:
   - provider: codedeploy
     access_key_id: $AWS_ACCESS_KEY
     secret_access_key: $AWS_SECRET_KEY
-    bucket: jong1-springboot-build
-    key: jong1-springboot-webservice.zip
+    bucket: jong1-springboot-build # S3 버킷
+    key: jong1-springboot-webservice.zip # 빌드 파일을 압축해서 전달
     bundle_type: zip
     application: jong1-springboot-webservice
     deployment_group: jong1-springboot-webservice-group

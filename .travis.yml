@@ -32,6 +32,17 @@ deploy:
     on:
       all_branches: true
 
+  - provider: codedeploy
+    access_key_id: $AWS_ACCESS_KEY
+    secret_access_key: $AWS_SECRET_KEY
+    bucket: jong1-springboot-build
+    key: jong1-springboot-webservice.zip
+    bundle_type: zip
+    application: jong1-springboot-webservice
+    deployment_group: jong1-springboot-webservice-group
+    region: ap-northeast-2
+    wait-until-deployed: true
+
 #CI 실행 완료시 매일로 알람
 notifications:
   email:

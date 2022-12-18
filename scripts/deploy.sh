@@ -9,7 +9,7 @@ cp $REPOSITORY/zip/*.jar $REPOSITORY/
 
 echo "> 현재 구동 중인 Application PID 확인"
 
-CURRENT_PID=$(pgrep -fl jong1-springboot-webservice | grep .jar | awk '{print $1}')
+CURRENT_PID=$(pgrep -fla jong1-springboot-webservice | grep .jar | awk '{print $1}')
 
 echo " 현재 구동 중인 어플리케이션 pid : $CURRENT_PID"
 

@@ -12,7 +12,7 @@ echo "> IDLE_PORT: $IDLE_PORT"
 echo "> curl -s http://localhost:$IDLE_PORT/profile "
 sleep 10
 
-for RETRY_COUNT in {1...10}
+for RETRY_COUNT in {1..10}
 do
   RESPONSE=$(curl -s http://localhost:${IDLE_PORT}/profile)
   UP_COUNT=$(echo ${RESPONSE} | grep `real` | wc -1)
@@ -25,6 +25,13 @@ do
   else
     echo "> Health Check의 응답을 알 수 없거나 혹은 실행 상태가 아닙니다."
     echo "> Health Check: ${RESPONSE}"
+    exit 1
+  fi
+  
+  if [ ${RETRY_COUNT} -eq 10 ]
+  then
+    echo "> Health Check 실패."
+    echo "> Nginx에 연결하지 않고 배포를 종료합니다."
     exit 1
   fi
   echo "> Health Check 연결 실패. 재시도"
